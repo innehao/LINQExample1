@@ -28,139 +28,139 @@ namespace LinqExample_1
             List<Employee> employeeList = EmpData.GetEmployee();
             List<Department> departmentList = EmpData.GetDepartments();
 
-            //Select and Where Operator - Method-syntax
-            //var result = employeeList.Select(emp => new
-            //{
-            //    Fullname = emp.Fname + " " + emp.Lname,
-            //    AnnualSalary = emp.AnnualSalary
-            //}).Where(emp => emp.AnnualSalary > 50000);
+            Select and Where Operator - Method-syntax
+            var result = employeeList.Select(emp => new
+            {
+               Fullname = emp.Fname + " " + emp.Lname,
+               AnnualSalary = emp.AnnualSalary
+            }).Where(emp => emp.AnnualSalary > 50000);
 
-            //foreach (var items in result)
-            //{
-            //    Console.WriteLine($"{items.Fullname,-10} ${items.AnnualSalary}");
-            //}
+            foreach (var items in result)
+            {
+               Console.WriteLine($"{items.Fullname,-10} ${items.AnnualSalary}");
+            }
 
-            //Select and Where Operator - Query-syntax
-            //var result = from emp in employeeList
-            //             where emp.AnnualSalary > 50000
-            //             select new
-            //             {
-            //                 Fullname = emp.Fname + " " + emp.Lname,
-            //                 AnnualSalary = emp.AnnualSalary
-            //             };
-            //employeeList.Add(new Employee
-            //{
-            //    Id = 5,
-            //    Fname = "Yin",
-            //    Lname = "Chaychinh",
-            //    isManager = true,
-            //    AnnualSalary = 65000,
-            //    DepartmenId = 2  
-            //});
+            Select and Where Operator - Query-syntax
+            var result = from emp in employeeList
+                        where emp.AnnualSalary > 50000
+                        select new
+                        {
+                            Fullname = emp.Fname + " " + emp.Lname,
+                            AnnualSalary = emp.AnnualSalary
+                        };
+            employeeList.Add(new Employee
+            {
+               Id = 5,
+               Fname = "Yin",
+               Lname = "Chaychinh",
+               isManager = true,
+               AnnualSalary = 65000,
+               DepartmenId = 2  
+            });
 
-            //foreach (var items in result)
-            //{
-            //    Console.WriteLine($"{items.Fullname,-10} ${items.AnnualSalary}");
-            //}
+            foreach (var items in result)
+            {
+               Console.WriteLine($"{items.Fullname,-10} ${items.AnnualSalary}");
+            }
 
-            //Deferred Executed Example 
-            //var result = from emp in employeeList.GethighestSalariedEmployees()
-            //             select new
-            //             {
-            //                 Fullname = emp.Fname + " " + emp.Lname,
-            //                 AnnualSalary = emp.AnnualSalary
-            //             };
+            Deferred Executed Example 
+            var result = from emp in employeeList.GethighestSalariedEmployees()
+                        select new
+                        {
+                            Fullname = emp.Fname + " " + emp.Lname,
+                            AnnualSalary = emp.AnnualSalary
+                        };
 
-            //employeeList.Add(new Employee
-            //{
-            //    Id = 5,
-            //    Fname = "Yin",
-            //    Lname = "Chaychinh",
-            //    isManager = true,
-            //    AnnualSalary = 65000,
-            //    DepartmenId = 2
-            //});
+            employeeList.Add(new Employee
+            {
+               Id = 5,
+               Fname = "Yin",
+               Lname = "Chaychinh",
+               isManager = true,
+               AnnualSalary = 65000,
+               DepartmenId = 2
+            });
 
-            //foreach (var items in result)
-            //{
-            //    Console.WriteLine($"{items.Fullname,-10} ${items.AnnualSalary}");
-            //}
+            foreach (var items in result)
+            {
+               Console.WriteLine($"{items.Fullname,-10} ${items.AnnualSalary}");
+            }
 
-            //Immediate Executed Example
-            //var result = (from emp in employeeList.GethighestSalariedEmployees()
-            //              select new
-            //              {
-            //                  Fullname = emp.Fname + " " + emp.Lname,
-            //                  AnnualSalary = emp.AnnualSalary
-            //              }).ToList();
+            Immediate Executed Example
+            var result = (from emp in employeeList.GethighestSalariedEmployees()
+                         select new
+                         {
+                             Fullname = emp.Fname + " " + emp.Lname,
+                             AnnualSalary = emp.AnnualSalary
+                         }).ToList();
 
-            //employeeList.Add(new Employee
-            //{
-            //    Id = 5,
-            //    Fname = "Yin",
-            //    Lname = "Chaychinh",
-            //    isManager = true,
-            //    AnnualSalary = 65000,
-            //    DepartmenId = 2
-            //});
+            employeeList.Add(new Employee
+            {
+               Id = 5,
+               Fname = "Yin",
+               Lname = "Chaychinh",
+               isManager = true,
+               AnnualSalary = 65000,
+               DepartmenId = 2
+            });
 
-            //foreach (var items in result)
-            //{
-            //    Console.WriteLine($"{items.Fullname,-10} ${items.AnnualSalary}");
-            //}
+            foreach (var items in result)
+            {
+               Console.WriteLine($"{items.Fullname,-10} ${items.AnnualSalary}");
+            }
 
-            ////Jion operator Example - Method-Syntax
-            //var result = departmentList.Join(employeeList,
-            //             department => department.DptID,
-            //             employee => employee.DepartmenId,
-            //             (department,employee) => new
-            //             {
-            //                 FullName = employee.Fname + " " + employee.Lname,
-            //                 AnnualSalary = employee.AnnualSalary,
-            //                 departmentName = department.LongName
-            //             }
-            //    );
+            //Jion operator Example - Method-Syntax
+            var result = departmentList.Join(employeeList,
+                        department => department.DptID,
+                        employee => employee.DepartmenId,
+                        (department,employee) => new
+                        {
+                            FullName = employee.Fname + " " + employee.Lname,
+                            AnnualSalary = employee.AnnualSalary,
+                            departmentName = department.LongName
+                        }
+               );
 
-            //foreach (var items in result)
-            //{
-            //    Console.WriteLine($"{items.FullName,-10} ${items.AnnualSalary,-5} {items.departmentName}");
-            //}
+            foreach (var items in result)
+            {
+               Console.WriteLine($"{items.FullName,-10} ${items.AnnualSalary,-5} {items.departmentName}");
+            }
 
-            ////Jion operator Example - Query-Syntax
-            //var result = from dept in departmentList
-            //             join emp in employeeList
-            //             on dept.DptID equals emp.DepartmenId
-            //             select new
-            //             {
-            //                 FullName = emp.Fname + " " + emp.Lname,
-            //                 AnnualSalary = emp.AnnualSalary,
-            //                 departmentName = dept.LongName
-            //             };
+            //Jion operator Example - Query-Syntax
+            var result = from dept in departmentList
+                        join emp in employeeList
+                        on dept.DptID equals emp.DepartmenId
+                        select new
+                        {
+                            FullName = emp.Fname + " " + emp.Lname,
+                            AnnualSalary = emp.AnnualSalary,
+                            departmentName = dept.LongName
+                        };
 
-            //foreach (var items in result)
-            //{
-            //    Console.WriteLine($"{items.FullName,-10} ${items.AnnualSalary,-5} {items.departmentName}");
-            //}
+            foreach (var items in result)
+            {
+               Console.WriteLine($"{items.FullName,-10} ${items.AnnualSalary,-5} {items.departmentName}");
+            }
 
-            ////GroupJoin operator Example - Method-Syntax
-            //var result = departmentList.GroupJoin(employeeList,
-            //             dept => dept.DptID,
-            //             emp => emp.DepartmenId,
-            //             (department, employeesGroup) => new
-            //             {
-            //                 Employees = employeesGroup,
-            //                 DepartmentName = department.LongName
-            //             }
-            //    );
+            //GroupJoin operator Example - Method-Syntax
+            var result = departmentList.GroupJoin(employeeList,
+                        dept => dept.DptID,
+                        emp => emp.DepartmenId,
+                        (department, employeesGroup) => new
+                        {
+                            Employees = employeesGroup,
+                            DepartmentName = department.LongName
+                        }
+               );
 
-            //foreach (var items in result)
-            //{
-            //    Console.WriteLine($"Department Name:{items.DepartmentName}");
-            //    foreach (var emp in items.Employees)
-            //    {
-            //        Console.WriteLine($"{emp.Fname} {emp.Lname}");
-            //    }
-            //}
+            foreach (var items in result)
+            {
+               Console.WriteLine($"Department Name:{items.DepartmentName}");
+               foreach (var emp in items.Employees)
+               {
+                   Console.WriteLine($"{emp.Fname} {emp.Lname}");
+               }
+            }
 
             ////GroupJoin operator Example - Query-Syntax
             var result = from dept in departmentList
